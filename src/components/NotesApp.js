@@ -1,7 +1,6 @@
 import React from 'react'
 import AppHeader from './AppHeader'
 import { getInitialData } from '../utils'
-import NotesInput from './NotesInput'
 import NotesContent from './NotesContent'
 
 class NotesApp extends React.Component {
@@ -9,12 +8,15 @@ class NotesApp extends React.Component {
         super(props)
 
         this.state = {
-            notes: getInitialData()
+            notes: getInitialData(),
+            archived: [],
+            searchKeyword: '',
         }
 
         this.onAddNotesEventHandler = this.onAddNotesEventHandler.bind(this)
         this.onDeleteNotesEventHandler = this.onDeleteNotesEventHandler.bind(this)
         this.onArchivedEventHandler = this.onArchivedEventHandler.bind(this)
+        this.onSearchEventHandler = this.onSearchEventHandler.bind(this)
     }
 
     onDeleteNotesEventHandler(id) {
@@ -36,14 +38,13 @@ class NotesApp extends React.Component {
                         title,
                         body,
                         archived: false,
-                        createdAt: new Date()
+                        createdAt: new Date(),
                     }
                 ]
             }
         })
     }
 
-    // ! PR : KALO BISA URUTAN ARRAY NYA TIDAK BERUBAH
     onArchivedEventHandler(id) {
         const prevNote = this.state.notes.filter(note => note.id !== id)
         const archived = this.state.notes.filter(note => note.id === id).map(note => {
@@ -57,18 +58,27 @@ class NotesApp extends React.Component {
         })
     }
 
+    onSearchEventHandler(value) {
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                searchKeyword: value
+            }
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
                 <AppHeader />
-                <main>
-                    <NotesInput AddNotes={this.onAddNotesEventHandler}/>
-                    <NotesContent
-                        notes={this.state.notes}
-                        onDelete={this.onDeleteNotesEventHandler}
-                        onArchived={this.onArchivedEventHandler}
-                        />
-                </main>
+                <NotesContent
+                    AddNotes={this.onAddNotesEventHandler}
+                    notes={this.state.notes}
+                    onDelete={this.onDeleteNotesEventHandler}
+                    onArchived={this.onArchivedEventHandler}
+                    onSearch={this.onSearchEventHandler}
+                    searchKeyword={this.state.searchKeyword}
+                    />
             </React.Fragment>
         )
     }

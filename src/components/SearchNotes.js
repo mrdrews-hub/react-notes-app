@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react"
 
 class SearchNotes extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            keyword: ''
+            keyword: "",
         }
 
         this.onInputSearchEventHandler = this.onInputSearchEventHandler.bind(this)
@@ -14,17 +14,15 @@ class SearchNotes extends React.Component {
     onInputSearchEventHandler(event) {
         this.setState((prevState) => {
             return {
-                ...prevState,
-                keyword: event.target.value
+                keyword: event.target.value,
             }
         })
+        this.props.onSearch(event.target.value)
     }
 
     render() {
         return (
-            <React.Fragment>
-                <input type="text" className="search-notes" placeholder='Search' value={this.state.keyword} onChange={this.onInputSearchEventHandler} />
-            </React.Fragment>
+                <input type="text" className="search-notes" placeholder='Search' onChange={this.onInputSearchEventHandler} />
         )
     }
 }

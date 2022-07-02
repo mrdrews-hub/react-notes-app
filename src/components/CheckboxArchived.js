@@ -1,11 +1,11 @@
-import React from "react";
+import React from "react"
 
 class CheckboxArchived extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            archived: false
+            archived: false,
         }
         this.onCheckBoxClicked = this.onCheckBoxClicked.bind(this)
     }

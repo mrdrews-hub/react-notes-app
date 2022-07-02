@@ -52,18 +52,17 @@ button:active {
   max-width: 500px;
   margin-bottom: 48px;
 }
+.note-input .text-counter{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 4px;
+  font-size: 14px;
+}
 
 .note-input input, .note-input textarea {
   display: block;
   width: 100%;
 }
-
-.note-input__title__char-limit {
-  font-size: 14px;
-  text-align: right;
-  color: #aaa;
-}
-
 .note-input button {
   display: block;
   width: 100%;
@@ -133,6 +132,7 @@ button:active {
   font-size: 12px;
   margin-bottom: 8px;
   color: #aaa;
+  margin-top: 2px;
 }
 
 .note-item__body {
@@ -153,12 +153,11 @@ button:active {
   border-radius: 999px;
 }
 
-.note-item__archive-button:hover {
-  color: #c49000;
+.input-error {
+  border: 2px solid red;
 }
-
-.note-item__delete-button:hover {
-  color: #b00020;
+.text-error {
+  color: red;
 }
 
 @media only screen and (min-width: 500px) {

@@ -1,6 +1,7 @@
 import React from "react"
 import NotesItemHeader from "./NotesItemHeader"
 import NotesItemBody from "./NotesItemBody"
+
 const NotesItem = ({ id, title, body, date, onDelete, onArchived, archived }) => {
     return (
         <div className="note-item">
